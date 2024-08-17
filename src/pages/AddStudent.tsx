@@ -1,5 +1,8 @@
 import React from "react";
 import { Button, Form, Input, InputNumber, Select } from "antd";
+import { addStudent, TStudent } from "../redux/features/StudentSlice";
+import { useAppDispatch } from "../redux/hook";
+import { toast } from "sonner";
 
 const { Option } = Select;
 
@@ -29,10 +32,12 @@ const tailFormItemLayout = {
 
 const AddStudent: React.FC = () => {
   const [form] = Form.useForm();
-
-  const onFinish = (values: any) => {
+  const dispatch = useAppDispatch()
+  const onFinish = (values: TStudent) => {
     console.log("Received values of form: ", values);
-    
+    dispatch(addStudent(values))
+    toast.success('Student has been created')
+    form.resetFields();
   };
 
   return (

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type TStudent = {
+export type TStudent = {
   studentName: string;
   roll: string;
   department: string;
@@ -16,6 +16,7 @@ const StudentSlice = createSlice({
   reducers: {
     addStudent: (state: TStudent[], action: PayloadAction<TStudent>) => {
         console.log("Current-Payload",action.payload);
+        state.push(action.payload)
     },
   },
 });
