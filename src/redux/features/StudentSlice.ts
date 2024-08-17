@@ -1,22 +1,24 @@
-/*
- * this is will an slice
- * addStudent reducer
- * deleteStudent Reducer
- * updateStudent Reducer
- * 
- * 
- * 
- * 
- * TODO:=> Create a Backend Server useing NodeJs ExpressJs Where have intially CRUD
- * create=> POSTStudent
- * Read => get Stduents
- * Update Student
- * delete Student
- * 
- * intrgrate RTK Query For Post Student
- * intrgrate GET Student
- * update Stuednt
- * delete Student
- * 
- * Student
- */
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+type TStudent = {
+  studentName: string;
+  roll: string;
+  department: string;
+  adreess: string;
+  phone: string;
+};
+
+const initialState: TStudent[] = [];
+
+const StudentSlice = createSlice({
+  name: "studentPortal",
+  initialState,
+  reducers: {
+    addStudent: (state: TStudent[], action: PayloadAction<TStudent>) => {
+        console.log("Current-Payload",action.payload);
+    },
+  },
+});
+
+export const { addStudent } = StudentSlice.actions;
+export default StudentSlice.reducer;
