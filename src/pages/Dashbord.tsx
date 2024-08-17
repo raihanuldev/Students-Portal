@@ -2,9 +2,9 @@ import React from 'react';
 
 const Dashbord = () => {
     return (
-        <div>
-            Studnet Dasdhbor dejhre
-        </div>
+        <>
+          <p>TODO: this is are will be manage student by default</p>  
+        </>
     );
 };
 

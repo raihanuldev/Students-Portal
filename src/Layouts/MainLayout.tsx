@@ -1,20 +1,21 @@
 import React from 'react';
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { UploadOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 const items = [
     {
         key: "Add Student",
         icon: React.createElement(UploadOutlined),
-        label: 'Add Student'
+        label: <NavLink to='add-student'>Add Student</NavLink>
+        
     },
     {
         key: "Students-list",
         icon: React.createElement(UserOutlined),
-        label: 'Manage Student'
+        label: <NavLink to='manage-student'>Manage Student</NavLink>
     },
 ]
 
