@@ -5,13 +5,18 @@ import { Outlet } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [UserOutlined, VideoCameraOutlined, UploadOutlined, UserOutlined].map(
-  (icon, index) => ({
-    key: String(index + 1),
-    icon: React.createElement(icon),
-    label: `nav ${index + 1}`,
-  }),
-);
+const items = [
+    {
+        key: "Add Student",
+        icon: React.createElement(UploadOutlined),
+        label: 'Add Student'
+    },
+    {
+        key: "Students-list",
+        icon: React.createElement(UserOutlined),
+        label: 'Manage Student'
+    },
+]
 
 const App: React.FC = () => {
 
@@ -28,7 +33,7 @@ const App: React.FC = () => {
         }}
       >
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} style={{marginTop:"50px"}} />
       </Sider>
       <Layout>
         <Header style={{ padding: 0, }}>
@@ -44,9 +49,6 @@ const App: React.FC = () => {
             <Outlet/>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          BSPI ©{new Date().getFullYear()} Created by raihanuldev
-        </Footer>
       </Layout>
     </Layout>
   );
