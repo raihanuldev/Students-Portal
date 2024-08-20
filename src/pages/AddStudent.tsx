@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form, Input, InputNumber, Select } from "antd";
 import { TStudent } from "../redux/features/StudentSlice";
 import { toast } from "sonner";
-import { useAddStudentMutation } from "../redux/api/baseApi";
+import { useAddStudentMutation, useGetStudentsQuery } from "../redux/api/baseApi";
 
 const { Option } = Select;
 
@@ -32,12 +32,14 @@ const tailFormItemLayout = {
 
 const AddStudent: React.FC = () => {
   const [AddStudent] = useAddStudentMutation();
+  const {refetch} = useGetStudentsQuery(undefined)
   const [form] = Form.useForm();
   const onFinish = async (values: TStudent) => {
     console.log("Received values of form: ", values);
     const res = await AddStudent(values)
     console.log(res);
     toast.success("Student has been created");
+    refetch()
     form.resetFields();
   };
 
