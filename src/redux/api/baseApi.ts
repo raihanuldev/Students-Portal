@@ -1,14 +1,18 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Define a service using a base URL and expected endpoints
+
 export const baseApi = createApi({
-    reducerPath:"baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
+  reducerPath: "baseApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
   endpoints: (builder) => ({
-    getPokemonByName: builder.query({
-      query: (name) => `pokemon/${name}`,
+    getStudents: builder.query({
+      query: () => ({
+        url: "students",
+        method: "GET"
+      })
+
     }),
   }),
-})
+});
 
-export const { useGetPokemonByNameQuery } = baseApi
+export const { useGetStudentsQuery } = baseApi;
