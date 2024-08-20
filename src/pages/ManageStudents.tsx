@@ -1,5 +1,4 @@
 import { Button, Table, TableColumnsType, TableProps } from "antd";
-import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { useGetStudentsQuery } from "../redux/api/baseApi";
 
 // Data-Types
@@ -11,27 +10,29 @@ interface DataType {
   department: string;
   phone: string;
 }
-
+// Data-Type for the API response
+interface Student {
+  _id: string;
+  studentName: string;
+  roll: number;
+  address: string;
+  department: string;
+  phone: string;
+}
 const ManageStudents = () => {
-  const {
-    data: students,
-    isError,
-    isFetching,
-  } = useGetStudentsQuery(undefined);
+  const { data: students, isFetching } = useGetStudentsQuery(undefined);
   console.log(students);
 
   // handleUpdate
-  const handleUpdate =(data)=>{
+  const handleUpdate = (data: DataType) => {
     console.log(data);
-  }
+  };
+
   const columns: TableColumnsType<DataType> = [
     {
       title: "Student Name",
       dataIndex: "studentName",
       showSorterTooltip: { target: "full-header" },
-      
-      // specify the condition of filtering result
-      // here is that finding the name started with `value`
       onFilter: (value, record) =>
         record.studentName.indexOf(value as string) === 0,
       sorter: (a, b) => a.studentName.length - b.studentName.length,
@@ -76,18 +77,16 @@ const ManageStudents = () => {
     {
       title: "Action",
       render: (_, record) => (
-        <Button
-          type="primary"
-          onClick={() => handleUpdate(record)}
-        >
+        <Button type="primary" onClick={() => handleUpdate(record)}>
           Update
         </Button>
       ),
     },
   ];
-  const tableData = students?.map(
+
+  const tableData: DataType[] | undefined = students?.map(
     ({ _id, studentName, roll, department, phone, address }) => ({
-      key:_id,
+      key: _id,
       studentName,
       roll,
       department,
@@ -115,4 +114,5 @@ const ManageStudents = () => {
     />
   );
 };
+
 export default ManageStudents;

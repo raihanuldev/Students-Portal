@@ -1,9 +1,9 @@
-import React from 'react';
+import ManageStudents from "./ManageStudents"
 
 const Dashbord = () => {
     return (
         <>
-          <p>TODO: this is are will be manage student by default</p>  
+          <ManageStudents/>
         </>
     );
 };
